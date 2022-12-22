@@ -289,7 +289,7 @@ print('l2:',l2)'''
 #help('modules')
 #write a program to insert data into database and retrive data from the database by using mysql:
 
-'''import pymysql
+import pymysql
 try:
     con=pymysql.connect(host='localhost',database='harikadb',user='dbaharika',password='harika1990')
     cursor=con.cursor()
@@ -298,7 +298,7 @@ try:
     query="""INSERT INTO employees1 (eno, ename, esal, eaddr) 
                                 VALUES (%s, %s, %s, %s) """
     record=[(111,'Kathrina',1111,'Mumbai'),(222,'Karinna',2222,'Mumbai'),(333,'Deepika',3333,'Delhi')]
-    cursor.execute(query,record)
+    cursor.execute(query,(111,'Kathrina',1111,'Mumbai'),(222,'Karinna',2222,'Mumbai'),(333,'Deepika',3333,'Delhi'))
     con.commit()
     print("Record inserted successfully")
     cursor.executemany("select * from employees1")
@@ -310,6 +310,7 @@ try:
         print("Emp Address:", row[3])
         print()
 except pymysql.DatabaseError as e:
+    print("there is a problem in db:", e)
     if con:
         con.rollback()
         print("there is a problem in db:",e)
@@ -317,7 +318,7 @@ finally:
     if cursor:
         cursor.close()
     if con:
-        con.close()'''
+        con.close()
 
 
 '''import pymysql
